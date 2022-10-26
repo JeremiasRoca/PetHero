@@ -1,0 +1,35 @@
+[
+    {
+        "id": 1,
+        "idOwner": 1,
+        "name": "pepe",
+        "photo": "1_1.png",
+        "breed": "galgo",
+        "size": "medium",
+        "vaxPlanImg": "1_1_vacu.jpg",
+        "video": null,
+        "observation": "malote"
+    },
+    {
+        "id": 2,
+        "idOwner": 4,
+        "name": "pepe",
+        "photo": "4_2.jpg",
+        "breed": "pequines",
+        "size": "small",
+        "vaxPlanImg": "4_2_vacu.jpg",
+        "video": null,
+        "observation": "buenisimo"
+    },
+    {
+        "id": 3,
+        "idOwner": 4,
+        "name": "robertito",
+        "photo": "4_3.png",
+        "breed": "PERRO",
+        "size": "big",
+        "vaxPlanImg": "4_3_vacu.jpg",
+        "video": null,
+        "observation": "malo"
+    }
+]
