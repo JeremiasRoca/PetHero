@@ -1,0 +1,52 @@
+[
+    {
+        "id": 1,
+        "email": "valen@gmail.com",
+        "password": "asd123",
+        "userName": "ValentinC",
+        "firstname": "Valentin",
+        "lastname": "Cristaldo",
+        "userType": "owner"
+    },
+    {
+        "id": 2,
+        "email": "pepe@gmail.com",
+        "password": "asd123",
+        "userName": "PepeLepiu",
+        "firstname": "Pepe",
+        "lastname": "Lepiu",
+        "userType": "keeper",
+        "compensation": "15",
+        "petType": "Medium",
+        "availabilityList": [
+            "2022-10-25",
+            "2022-11-04",
+            "2022-10-23",
+            "2022-10-30",
+            "2022-10-29"
+        ]
+    },
+    {
+        "id": 3,
+        "email": "blabla@gmail.com",
+        "password": "asd123",
+        "userName": "blablebli",
+        "firstname": "bla",
+        "lastname": "ble",
+        "userType": "keeper",
+        "compensation": "2",
+        "petType": "Small",
+        "availabilityList": [
+            "2022-10-28"
+        ]
+    },
+    {
+        "id": 4,
+        "email": "sol@gmail.com",
+        "password": "sol123",
+        "userName": "solpro",
+        "firstname": "solange",
+        "lastname": "posse",
+        "userType": "owner"
+    }
+]
