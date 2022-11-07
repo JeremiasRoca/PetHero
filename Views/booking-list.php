@@ -16,28 +16,36 @@
         <th>id</th>
         <th>idOwner</th>
         <th>idKeeper</th>
-        <th>date</th>
+        
         <th>state</th>
         <th>pets</th>
+        <th>date</th>
       </tr>
     </thead>
 
      <tbody>
-      <?php foreach ($bookingList as $booking) {
+      <?php if(sizeof($bookingList)!=0){ 
+      foreach ($bookingList as $booking) {
         if ($_SESSION["loggedUser"]->getId() === $booking->getIdOwner()) {
       ?>
           <tr>
             <td class="first-td"> <?php echo $booking->getId()?></td>
             <td> <?php echo $booking->getIdOwner()?></td>
             <td> <?php echo $booking->getIdKeeper()?></td>
-            <td> <?php echo $booking->getDate()?></td>
+           
             <td> <?php echo $booking->getState()?></td>
-            <td> <?php echo $booking->getPets()?></td>
-            
-          
+            <td> 
+            <?php 
+            if(sizeof($booking->getPets())!=0){
+            foreach ($booking->getPets() as $pet) {
+              echo $pet->getName();
+            } }?>
+            </td>
+            <td> <?php echo $booking->getDate()?></td>
           </tr>
+          
       <?php  }
-      };  ?>
+      }};  ?>
 
     </tbody>
   </table>

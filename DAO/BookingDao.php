@@ -32,6 +32,53 @@ class BookingDao{
     }
 
 
+    public function addPet ($pet,$idBooking){
+       
+        $this->retrieveData();
+        foreach($this->bookingList as $booking){
+            if($booking->getId() == $idBooking ){
+                $array = $booking->getPets();
+                array_push($array,$pet);
+                $booking->setPets($array);
+            
+            }
+        }
+        $this->saveData();
+    }
+
+    public function updateState (Booking $booking, $state){
+       
+        $this->retrieveData();
+        foreach($this->bookingList as $aux){
+
+            if($aux->getId() == $booking->getId() ){
+ var_dump($state);
+ var_dump($booking->getState());
+                if($state == "accepted"){
+                    $booking->setState("accepted");
+                }else if($state == "refused"){
+                    $booking->setState("refused");
+                }
+                $this->retrieveData();
+                $this->delete($booking->getId());
+                array_push($this->bookingList, $booking);
+                $this->saveData();
+            }
+        }
+        
+    }
+
+    
+    public function modify($booking)
+    {
+        $this->retrieveData();
+        $this->delete($booking->getId());
+        array_push($this->bookingList, $booking);
+        $this->saveData();
+    }
+
+    
+
 
     public function getAll()
     {
@@ -57,7 +104,7 @@ class BookingDao{
         $pendienteList = [];
 
         foreach($this->bookingList as $booking){
-            if($booking->getType() == "pendiente" && $booking->getIdKeeper() == $idKeeper){
+            if($booking->getType() == "earring" && $booking->getIdKeeper() == $idKeeper){
                 array_push($pendienteList,$booking);
             }
         }
@@ -90,6 +137,7 @@ class BookingDao{
     
     }
 
+ 
 
     public function retrieveDataByIdOwner($id){
 
@@ -155,7 +203,6 @@ class BookingDao{
         $this->retrieveData();
         
         $booking->setId($this->getNextId());  
-        $booking->setPets($this->getNextId());  
         
         array_push($this->bookingList, $booking);
 
@@ -187,6 +234,32 @@ class BookingDao{
     
     }
 
+        public function delete($id)
+        {
+        	$this->retrieveData();
+
+        	$positionToDelete = $this->getPositionById($id);
+        	if(!is_null($positionToDelete)) unset($this->bookingList[$positionToDelete]);
+
+        	$this->saveData();
+        }
+
+        public function getPositionById($id)
+        {
+            $position=0;
+            foreach($this->bookingList as $booking)
+            {
+                if($booking->getId()==$id) return $position;
+                $position++;
+            }
+            return null;
+        }
+
+     
+
+     
+	
+
     private function getNextId()
     {
         $id = 0;
@@ -202,11 +275,3 @@ class BookingDao{
 
 
 }
-
-
-
-
-
-
-
-?>

@@ -27,6 +27,11 @@ $user=$_SESSION["loggedUser"];
       </form>
   </div>
 
+  <div class="container">
+      <form action="<?php echo FRONT_ROOT."Booking/showMyBookingList"?>">    <!-- cambiar el CONTROLLER -->
+          <button type="submmit" class="large-button">Booking list</button>
+      </form>
+  </div>
 
 
   <div class="container">

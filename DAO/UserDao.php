@@ -91,6 +91,7 @@ class UserDao{
         $this->saveData();
     }
 
+
     public function setCompensation($compensation){
         $sessionUser = $_SESSION["loggedUser"];
         $sessionId = $sessionUser->getId();

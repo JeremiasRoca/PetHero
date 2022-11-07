@@ -42,8 +42,25 @@ class BookingController {
     }
 
 
-  
+    public function updateState($state,$id){
+       
+        $booking = $this->BookingDao->getById($id);
+      
 
+        $this->BookingDao->updateState($booking,$state);
+
+
+        $this->lobbyKeeper();
+}
+
+
+    
+
+    public function addPetBooking ($pet,$idBooking){
+        
+            $this->BookingDao->addPet($pet,$idBooking);
+
+    }
     
     public function showMyBookingList()
     {
@@ -68,8 +85,13 @@ class BookingController {
         
     }  
 
-    
+    public function lobbyKeeper()
+    {
+      
+        require_once(VIEWS_PATH."lobby-keeper.php");
+    }   
 
 }   
     
 ?> 
+

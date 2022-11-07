@@ -99,12 +99,12 @@ class Pet{
 
     public function getObservation()
     {
-        return $this->observations;
+        return $this->observation;
     }
 
-    public function setObservation($observations)
+    public function setObservation($observation)
     {
-        $this->observations = $observations;
+        $this->observation = $observation;
 
         return $this;
     }
