@@ -4,8 +4,15 @@
 <div class="container">
 
   <p class="p-text">Indicate your pet</p>
-  <form action="<?php echo FRONT_ROOT . "Booking/addPet" ?>" method="post">
-    <input type="date" min="<?php getdate() ?>" id="Dates" name="dates" placeholder="Select days" multiple="true" />
+  <form action="<?php echo FRONT_ROOT . "Booking/addPetBooking" ?>" method="post">
+    <select id="cars" name="cars">
+
+      <?php foreach ($petList as $pet) { ?>
+
+        <option value="<?php echo $pet->getName(); ?>"><?php echo $pet->getName(); ?></option>
+
+      <?php }; ?>
+    </select>
 
     <br>
     <button type="submmit" class="large-button">add</button>

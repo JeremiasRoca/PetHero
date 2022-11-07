@@ -63,7 +63,13 @@ class HomeController {
         if($user->getUserType()== "owner"){  
             require_once(VIEWS_PATH."home-owner.php");
         }else if($user->getUserType()== "keeper"){  
-            require_once(VIEWS_PATH."home-keeper.php");
+
+            if($user->getCompensation()==""){
+                require_once(VIEWS_PATH."home-keeper.php");
+            }else {
+                $this->lobbyKeeper();
+            }
+            
         }else{
             require_once(VIEWS_PATH."home.php"); 
         }
@@ -83,6 +89,11 @@ class HomeController {
         }
     }
 
+    public function lobbyKeeper()
+    {
+      
+        require_once(VIEWS_PATH."lobby-keeper.php");
+    }   
 
     public function moreData ($dates,$compensation,$size){
         $today = date('Y-m-d');
@@ -91,11 +102,9 @@ class HomeController {
             $this->UserDao->addAvilability($dates);
             $this->UserDao->setCompensation($compensation);
             $this->UserDao->setPetType($size);
-        }else{
-       
         }
 
-        $this->logout();
+        $this->lobbyKeeper();
     }
 
 

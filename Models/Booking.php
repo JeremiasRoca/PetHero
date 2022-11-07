@@ -8,7 +8,7 @@ class Booking extends User{
     private $date;
     private $idKeeper;
     private $state;//pendiente(earring) - aceptado(accepted) - rechazado(refused)
-    private $pets;
+    private $pets= [];
 
    
 
@@ -92,25 +92,7 @@ class Booking extends User{
         return $this;
     }
 
-    /**
-     * Get the value of pets
-     */ 
-    public function getPets()
-    {
-        return $this->pets;
-    }
-
-    /**
-     * Set the value of pets
-     *
-     * @return  self
-     */ 
-    public function setPets($pets)
-    {
-        $this->pets = $pets;
-
-        return $this;
-    }
+  
 
     /**
      * Get the value of date
@@ -128,6 +110,26 @@ class Booking extends User{
     public function setDate($date)
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of pets
+     */ 
+    public function getPets()
+    {
+        return $this->pets;
+    }
+
+    /**
+     * Set the value of pets
+     *
+     * @return  self
+     */ 
+    public function setPets($pets)
+    {
+        $this->pets = $pets;
 
         return $this;
     }

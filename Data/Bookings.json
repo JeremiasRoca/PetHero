@@ -3,8 +3,8 @@
         "id": 1,
         "idKeeper": "2",
         "idOwner": 1,
-        "state": "earring",
-        "date": "2022-10-29",
-        "pets": 1
+        "state": "accepted",
+        "date": "2022-10-30",
+        "pets": []
     }
 ]
