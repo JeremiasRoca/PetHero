@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "idOwner": 1,
+        "petClass": "dog",
+        "name": "perro1",
+        "photo": "1_1.jpg",
+        "breed": "razaPerro1",
+        "size": "small",
+        "vaxPlanImg": "1_1_vacu.jpg",
+        "video": null,
+        "observation": "guau1"
+    },
+    {
+        "id": 2,
+        "idOwner": 1,
+        "petClass": "cat",
+        "name": "gato1",
+        "photo": "1_2.jpg",
+        "breed": "razaGato1",
+        "size": "small",
+        "vaxPlanImg": "1_2_vacu.jpg",
+        "video": null,
+        "observation": "miau1"
+    }
+]

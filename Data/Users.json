@@ -1,0 +1,28 @@
+[
+    {
+        "id": 1,
+        "email": "valen@gmail.com",
+        "password": "asd123",
+        "userName": "ValentinC",
+        "firstname": "Valentin",
+        "lastname": "Cristaldo",
+        "userType": "owner"
+    },
+    {
+        "id": 2,
+        "email": "pepe@gmail.com",
+        "password": "asd123",
+        "userName": "PepeLepiu",
+        "firstname": "pepe",
+        "lastname": "lepiu",
+        "userType": "keeper",
+        "compensation": "5000",
+        "petType": "Small",
+        "availabilityList": [
+            "2022-11-09",
+            "2022-11-10",
+            "2022-11-18",
+            "2022-11-11"
+        ]
+    }
+]
