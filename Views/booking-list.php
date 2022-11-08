@@ -38,11 +38,21 @@
             <?php 
             if(sizeof($booking->getPets())!=0){
             foreach ($booking->getPets() as $pet) {
-              echo $pet->getName();
+              echo $pet;
             } }?>
             </td>
             <td> <?php echo $booking->getDate()?></td>
+            <td>
+              <form action="<?php echo FRONT_ROOT . "Booking/updatePet" ?>" method="post">
+
+                <input style="display: none;" type="number" name="id" id="id" value=<?php echo $booking->getId();?> >
+                <input style="display: none;" type="text" name="state" id="state" value="transition">
+                <button type="submmit" class="large-button">Add Pet</button>
+
+              </form>
+              </td>
           </tr>
+        
           
       <?php  }
       }};  ?>

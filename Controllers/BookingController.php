@@ -2,15 +2,18 @@
 namespace Controllers;
 
 use DAO\BookingDao as BookingDao;
+use DAO\PetDao as PetDao;
 use Models\Booking as Booking;
 
 
 class BookingController {
     private $BookingDao;  
+    private $PetDao;  
    
 
     function __construct() {
         $this->BookingDao = new BookingDao();
+        $this->PetDao = new PetDao();
     }
 
 
@@ -53,14 +56,35 @@ class BookingController {
         $this->lobbyKeeper();
 }
 
+public function updatePet($state,$id){
+       
+    $booking = $this->BookingDao->getById($id);
+  
 
-    
+    $this->BookingDao->updateState($booking,$state);
+  
+    $this->selectPet();
+}
 
-    public function addPetBooking ($pet,$idBooking){
-        
-            $this->BookingDao->addPet($pet,$idBooking);
+public function selectPet()
+{
+    $user = $_SESSION["loggedUser"];
+    $petList =  $this->PetDao->getAllById($user->getId());
+   
+    require_once(VIEWS_PATH."add-pet-booking.php");
+}   
+
+    public function addPetBooking ($id){
+       $booking =  $this->BookingDao->getByTransition();
+
+
+            $this->BookingDao->addPet($id,$booking->getId());
+            $this->BookingDao-> updateStateEarring();
+            require_once(VIEWS_PATH."home-owner.php");
+
 
     }
+
     
     public function showMyBookingList()
     {
@@ -91,7 +115,6 @@ class BookingController {
         require_once(VIEWS_PATH."lobby-keeper.php");
     }   
 
-}   
-    
-?> 
 
+   
+}
