@@ -1,63 +1,81 @@
 <?php
+
 namespace DAO;
 
 use Models\Booking as Booking;
 
-class BookingDao{
+class BookingDao
+{
     private $bookingList = [];
     private $bookingListAux = [];
     private $bookingListAux2 = [];
-    private $fileName = ROOT."Data/Bookings.json";
+    private $fileName = ROOT . "Data/Bookings.json";
 
 
-    public function getByIdKeeper($idKeeper){
+    public function getByIdKeeper($idKeeper)
+    {
         $this->retrieveData();
 
-        $bookings = array_filter($this->bookingList, function($booking) use($idKeeper){
+        $bookings = array_filter($this->bookingList, function ($booking) use ($idKeeper) {
             return $booking->getEmail() == $idKeeper;
         });
-        $bookings = array_values($bookings); 
+        $bookings = array_values($bookings);
         return (count($bookings) > 0) ? $bookings[0] : null;
-
     }
 
-    public function getById($id){
+    public function getById($id)
+    {
         $this->retrieveData();
 
-        $bookings = array_filter($this->bookingList, function($booking) use($id){
+        $bookings = array_filter($this->bookingList, function ($booking) use ($id) {
             return $booking->getId() == $id;
         });
         $bookings = array_values($bookings);
         return (count($bookings) > 0) ? $bookings[0] : null;
     }
 
-
-    public function addPet ($pet,$idBooking){
-       
+    public function getByTransition()
+    {
         $this->retrieveData();
-        foreach($this->bookingList as $booking){
-            if($booking->getId() == $idBooking ){
+        $state = "transition";
+        $bookings = array_filter($this->bookingList, function ($booking) use ($state) {
+            return $booking->getState() == $state;
+        });
+        $bookings = array_values($bookings);
+        return (count($bookings) > 0) ? $bookings[0] : null;
+    }
+
+    public function addPet($pet, $idBooking)
+    {
+
+        $this->retrieveData();
+        foreach ($this->bookingList as $booking) {
+            if ($booking->getId() == $idBooking) {
                 $array = $booking->getPets();
-                array_push($array,$pet);
+                array_push($array, $pet);
                 $booking->setPets($array);
-            
             }
         }
         $this->saveData();
     }
 
-    public function updateState (Booking $booking, $state){
-       
-        $this->retrieveData();
-        foreach($this->bookingList as $aux){
 
-            if($aux->getId() == $booking->getId() ){
- var_dump($state);
- var_dump($booking->getState());
-                if($state == "accepted"){
+    public function updateState(Booking $booking, $state)
+    {
+
+        $this->retrieveData();
+        foreach ($this->bookingList as $aux) {
+
+            if ($aux->getId() == $booking->getId()) {
+
+                if ($state == "accepted") {
                     $booking->setState("accepted");
-                }else if($state == "refused"){
+                } else if ($state == "refused") {
                     $booking->setState("refused");
+                } else if ($state == "transition") {
+                    $booking->setState("transition");
+                } else if ($state->setState("earring")){
+                    $booking->setState("earring");
                 }
                 $this->retrieveData();
                 $this->delete($booking->getId());
@@ -65,10 +83,30 @@ class BookingDao{
                 $this->saveData();
             }
         }
-        
     }
 
+    public function updateStateEarring()
+    {
+
+        $this->retrieveData();
+        foreach ($this->bookingList as $aux) {
+
+          
+
+               if($aux->getState()=="transition"){
+                $aux->setState("earring");
+               }
+                  
+               
+                $this->retrieveData();
+                $this->delete($aux->getId());
+                array_push($this->bookingList, $aux);
+                $this->saveData();
+            }
+        }
     
+
+
     public function modify($booking)
     {
         $this->retrieveData();
@@ -77,7 +115,7 @@ class BookingDao{
         $this->saveData();
     }
 
-    
+
 
 
     public function getAll()
@@ -87,191 +125,182 @@ class BookingDao{
         return $this->bookingList;
     }
 
-    public function getAllByIdOwner($id){
+    public function getAllByIdOwner($id)
+    {
         $this->retrieveDataByIdOwner($id);
 
         return $this->bookingListAux;
     }
 
-    public function getAllByIdKeeper($id){
+    public function getAllByIdKeeper($id)
+    {
         $this->retrieveDataByIdKeeper($id);
 
         return $this->bookingListAux2;
     }
 
-    public function getPendienteIdKeeper($idKeeper){
+    public function getPendienteIdKeeper($idKeeper)
+    {
         $this->retrieveData();
         $pendienteList = [];
 
-        foreach($this->bookingList as $booking){
-            if($booking->getType() == "earring" && $booking->getIdKeeper() == $idKeeper){
-                array_push($pendienteList,$booking);
+        foreach ($this->bookingList as $booking) {
+            if ($booking->getType() == "earring" && $booking->getIdKeeper() == $idKeeper) {
+                array_push($pendienteList, $booking);
             }
         }
         return $pendienteList;
     }
 
-    public function retrieveData(){
+    public function retrieveData()
+    {
 
         $this->bookingList = [];
 
-             if(file_exists($this->fileName))
-             {
-                $jsonToDecode = file_get_contents($this->fileName);
-                $contentArray = ($jsonToDecode) ? json_decode($jsonToDecode, true) : [];
-                
-                foreach($contentArray as $content)
-                {
-                    
-                        $booking = new Booking();
-                        $booking->setId($content["id"]);
-                        $booking->setIdOwner($content["idOwner"]);
-                        $booking->setIdKeeper($content["idKeeper"]);
-                        $booking->setState($content["state"]);
-                        $booking->setPets($content["pets"]);
-                        $booking->setDate($content["date"]);
-                        
-                    array_push($this->bookingList, $booking);
-                }
-             }
-    
+        if (file_exists($this->fileName)) {
+            $jsonToDecode = file_get_contents($this->fileName);
+            $contentArray = ($jsonToDecode) ? json_decode($jsonToDecode, true) : [];
+
+            foreach ($contentArray as $content) {
+
+                $booking = new Booking();
+                $booking->setId($content["id"]);
+                $booking->setIdOwner($content["idOwner"]);
+                $booking->setIdKeeper($content["idKeeper"]);
+                $booking->setState($content["state"]);
+                $booking->setPets($content["pets"]);
+                $booking->setDate($content["date"]);
+
+                array_push($this->bookingList, $booking);
+            }
+        }
     }
 
- 
 
-    public function retrieveDataByIdOwner($id){
+
+    public function retrieveDataByIdOwner($id)
+    {
 
         $this->bookingListAux = [];
 
-             if(file_exists($this->fileName))
-             {
-                $jsonToDecode = file_get_contents($this->fileName);
-                $contentArray = ($jsonToDecode) ? json_decode($jsonToDecode, true) : [];
-                
-                foreach($contentArray as $content)
-                {
-                    
-                        
-                    $booking = new Booking();
-                    $booking->setId($content["id"]);
-                    $booking->setIdOwner($content["idOwner"]);
-                    $booking->setIdKeeper($content["idKeeper"]);
-                    $booking->setState($content["state"]);
-                    $booking->setPets($content["pets"]);
-                    $booking->setDate($content["date"]);
-                    if($booking->getIdOwner()===$id){
+        if (file_exists($this->fileName)) {
+            $jsonToDecode = file_get_contents($this->fileName);
+            $contentArray = ($jsonToDecode) ? json_decode($jsonToDecode, true) : [];
+
+            foreach ($contentArray as $content) {
+
+
+                $booking = new Booking();
+                $booking->setId($content["id"]);
+                $booking->setIdOwner($content["idOwner"]);
+                $booking->setIdKeeper($content["idKeeper"]);
+                $booking->setState($content["state"]);
+                $booking->setPets($content["pets"]);
+                $booking->setDate($content["date"]);
+                if ($booking->getIdOwner() === $id) {
                     array_push($this->bookingListAux, $booking);
-                    }
                 }
-             }
-    
+            }
+        }
     }
 
-    public function retrieveDataByIdKeeper($id){
+    public function retrieveDataByIdKeeper($id)
+    {
 
         $this->bookingListAux2 = [];
 
-             if(file_exists($this->fileName))
-             {
-                $jsonToDecode = file_get_contents($this->fileName);
-                $contentArray = ($jsonToDecode) ? json_decode($jsonToDecode, true) : [];
-                
-                foreach($contentArray as $content)
-                {
-                    
-                        
-                    $booking = new Booking();
-                    $booking->setId($content["id"]);
-                    $booking->setIdOwner($content["idOwner"]);
-                    $booking->setIdKeeper($content["idKeeper"]);
-                    $booking->setState($content["state"]);
-                    $booking->setPets($content["pets"]);
-                    $booking->setDate($content["date"]);
-                   
-                    if($booking->getIdKeeper()===strval($id)){
+        if (file_exists($this->fileName)) {
+            $jsonToDecode = file_get_contents($this->fileName);
+            $contentArray = ($jsonToDecode) ? json_decode($jsonToDecode, true) : [];
+
+            foreach ($contentArray as $content) {
+
+
+                $booking = new Booking();
+                $booking->setId($content["id"]);
+                $booking->setIdOwner($content["idOwner"]);
+                $booking->setIdKeeper($content["idKeeper"]);
+                $booking->setState($content["state"]);
+                $booking->setPets($content["pets"]);
+                $booking->setDate($content["date"]);
+
+                if ($booking->getIdKeeper() === strval($id)) {
                     array_push($this->bookingListAux2, $booking);
-                    }
                 }
-             }
-    
+            }
+        }
     }
 
 
 
-    public function register(Booking $booking){
+    public function register(Booking $booking)
+    {
 
         $this->retrieveData();
-        
-        $booking->setId($this->getNextId());  
-        
+
+        $booking->setId($this->getNextId());
+
         array_push($this->bookingList, $booking);
 
         $this->saveData();
-
     }
 
-    public function saveData(){
+    public function saveData()
+    {
 
         $arrayToEncode = [];
 
-            foreach($this->bookingList as $booking)
-            {
-                $valuesArray = [];
-                $valuesArray["id"] = $booking->getId();
-                $valuesArray["idKeeper"] = $booking->getIdKeeper();
-                $valuesArray["idOwner"] = $booking->getIdOwner();
-                $valuesArray["state"] = $booking->getState();
-                $valuesArray["date"] = $booking->getDate();
-                $valuesArray["pets"] = $booking->getPets();
-                
-              
-                array_push($arrayToEncode, $valuesArray);
-            }
+        foreach ($this->bookingList as $booking) {
+            $valuesArray = [];
+            $valuesArray["id"] = $booking->getId();
+            $valuesArray["idKeeper"] = $booking->getIdKeeper();
+            $valuesArray["idOwner"] = $booking->getIdOwner();
+            $valuesArray["state"] = $booking->getState();
+            $valuesArray["date"] = $booking->getDate();
+            $valuesArray["pets"] = $booking->getPets();
 
-            $fileContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
 
-            file_put_contents($this->fileName, $fileContent);
-    
+            array_push($arrayToEncode, $valuesArray);
+        }
+
+        $fileContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
+
+        file_put_contents($this->fileName, $fileContent);
     }
 
-        public function delete($id)
-        {
-        	$this->retrieveData();
+    public function delete($id)
+    {
+        $this->retrieveData();
 
-        	$positionToDelete = $this->getPositionById($id);
-        	if(!is_null($positionToDelete)) unset($this->bookingList[$positionToDelete]);
+        $positionToDelete = $this->getPositionById($id);
+        if (!is_null($positionToDelete)) unset($this->bookingList[$positionToDelete]);
 
-        	$this->saveData();
+        $this->saveData();
+    }
+
+    public function getPositionById($id)
+    {
+        $position = 0;
+        foreach ($this->bookingList as $booking) {
+            if ($booking->getId() == $id) return $position;
+            $position++;
         }
+        return null;
+    }
 
-        public function getPositionById($id)
-        {
-            $position=0;
-            foreach($this->bookingList as $booking)
-            {
-                if($booking->getId()==$id) return $position;
-                $position++;
-            }
-            return null;
-        }
 
-     
 
-     
-	
+
+
 
     private function getNextId()
     {
         $id = 0;
-        if(sizeof($this->bookingList) != 0){
-            foreach($this->bookingList as $booking)
-            {
+        if (sizeof($this->bookingList) != 0) {
+            foreach ($this->bookingList as $booking) {
                 $id = ($booking->getId() > $id) ? $booking->getId() : $id;
-
-            }   
+            }
         }
-        return $id+1;
+        return $id + 1;
     }
-
-
 }

@@ -33,7 +33,7 @@
             <td> <?php echo $booking->getState() ?></td>
             <td>
               <?php foreach ($booking->getPets() as $pet) {
-                echo $pet->getName();
+                echo $pet;
               } ?>
             </td>
             <td> <?php echo $booking->getDate() ?></td>

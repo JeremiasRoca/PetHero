@@ -31,5 +31,16 @@
         "vaxPlanImg": "4_3_vacu.jpg",
         "video": null,
         "observation": "malo"
+    },
+    {
+        "id": 4,
+        "idOwner": 1,
+        "name": "pepe2",
+        "photo": "1_1.png",
+        "breed": "galgo",
+        "size": "medium",
+        "vaxPlanImg": "1_1_vacu.jpg",
+        "video": null,
+        "observation": "maloteee"
     }
 ]
