@@ -12,7 +12,7 @@ class KeeperController {
         $this->UserDao = new UserDao();
     }
 
-    public function lobbyKeeper()
+    public function lobbyKeeper($message="")
     {
         require_once(VIEWS_PATH."lobby-keeper.php");
     }   
@@ -22,9 +22,13 @@ class KeeperController {
    
         if($dates > $today){
             $this->UserDao->addAvilability($dates);
+            $this->lobbyKeeper("");
+        }else{
+
+            $this->lobbyKeeper("ERROR-INCORRET DATE");
         }
 
-        $this->lobbyKeeper();
+     
     }
 
     public function showAddAvilability(){

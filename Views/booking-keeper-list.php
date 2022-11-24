@@ -38,7 +38,7 @@
             </td>
             <td> <?php echo $booking->getDate() ?></td>
             <td>
-              <form action="<?php echo FRONT_ROOT . "Booking/updateState" ?>" method="post">
+              <form action="<?php echo FRONT_ROOT . "Booking/updateState" ?>" method="POST">
 
                 <input style="display: none;" type="number" name="id" id="id" value=<?php echo $booking->getId();?> >
                 <input style="display: none;" type="text" name="state" id="state" value="accepted">
@@ -74,11 +74,11 @@
 
 </form>
 
+
 <div class="container">
   <br>
   <a href="<?php echo FRONT_ROOT . 'Booking/lobbyKeeper' ?>"><button class="medium-button">Go Back</button></a>
 </div>
-
 
 
 <?php include('footer.php'); ?>

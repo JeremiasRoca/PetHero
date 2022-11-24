@@ -18,6 +18,7 @@
         <th style="width: 30%;">Compensation</th>
         <th style="width: 15%;">Size Accepted</th>
         <th style="width: 10%;">Availability</th>
+        <th style="width: 10%;">Chat</th>
       </tr>
     </thead>
     <tbody>
@@ -37,7 +38,7 @@
                 <input style="display: none;" type="date" name="date" id="date" value=<?php echo $date;      ?>>
                 <?php echo $date . '<br>';      ?>
                 
-                  <!-- cambiar el CONTROLLER -->
+               
                   <button type="submmit" class="large-button">Add Booking</button>
 
                 
@@ -46,6 +47,16 @@
 
             <?php
               } ?>
+          </td>
+          <td>
+          <form style="" action="<?php echo FRONT_ROOT . "Message/IndexMessage" ?>" method="post">
+
+<input style="display: none;" type="text" name="idKeeper" id="idKeeper" value=<?php echo $keeper->getId();?>>
+
+  <button type="submmit" class="large-button">Chat with <?php echo $keeper->getFirstname();      ?></button>
+
+
+</form>
           </td>
         </tr>
       <?php }; ?>

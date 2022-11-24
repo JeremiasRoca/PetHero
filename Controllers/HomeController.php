@@ -51,7 +51,7 @@ class HomeController {
 
     public function Index($message = "")
     {
-        echo $message; 
+
         require_once(VIEWS_PATH."login.php");
     }        
 
@@ -117,7 +117,7 @@ class HomeController {
         }else{
 
         
-            $this->Index();
+            $this->Index("Incorret user or password");
         }
     }
     public function logout(){

@@ -3,7 +3,7 @@
           <header >
                <h1>PET HERO</h1>
           </header> 
-
+          <?php if($message) {echo '<script>alert("'.$message.'")</script>';} ?>
           <style>
   .container2 {
     justify-content: center;
