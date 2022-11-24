@@ -1,21 +1,11 @@
 [
     {
-        "id": 1,
-        "idKeeper": "2",
-        "idOwner": 1,
-        "state": "accepted",
-        "date": "2022-10-30",
-        "pets": []
-    },
-    {
-        "id": 2,
-        "idKeeper": "2",
+        "id": 6,
+        "idKeeper": "3",
         "idOwner": 1,
         "state": "earring",
-        "date": "2022-10-23",
+        "date": "2022-10-28",
         "pets": [
-            "1",
-            "1",
             "4"
         ]
     },
@@ -23,20 +13,63 @@
         "id": 4,
         "idKeeper": "2",
         "idOwner": 1,
-        "state": "accepted",
+        "state": "refused",
         "date": "2022-11-17",
         "pets": [
+            "1",
             "1"
+        ]
+    },
+    {
+        "id": 2,
+        "idKeeper": "2",
+        "idOwner": 1,
+        "state": "accepted",
+        "date": "2022-10-23",
+        "pets": [
+            "1",
+            "1",
+            "4",
+            "4"
         ]
     },
     {
         "id": 3,
         "idKeeper": "2",
         "idOwner": 1,
-        "state": "refused",
+        "state": "accepted",
         "date": "2022-10-30",
         "pets": [
             "1"
+        ]
+    },
+    {
+        "id": 7,
+        "idKeeper": "2",
+        "idOwner": 1,
+        "state": "accepted",
+        "date": "2022-10-30",
+        "pets": []
+    },
+    {
+        "id": 1,
+        "idKeeper": "2",
+        "idOwner": 1,
+        "state": "accepted",
+        "date": "2022-10-30",
+        "pets": [
+            "1",
+            "1"
+        ]
+    },
+    {
+        "id": 5,
+        "idKeeper": "2",
+        "idOwner": 1,
+        "state": "transition",
+        "date": "2022-10-23",
+        "pets": [
+            "4"
         ]
     }
 ]
