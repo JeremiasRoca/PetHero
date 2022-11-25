@@ -62,6 +62,18 @@ class UserDao{
         return $keeperList;
     }
 
+    public function getOwners(){
+        $this->retrieveData();
+        $ownerList = [];
+
+        foreach($this->userList as $user){
+            if($user->getUserType() == "owner"){
+                array_push($ownerList,$user);
+            }
+        }
+        return $ownerList;
+    }
+
     public function setPetType($size){
         $sessionUser = $_SESSION["loggedUser"];
         $sessionId = $sessionUser->getId();
@@ -194,11 +206,3 @@ class UserDao{
 
 
 }
-
-
-
-
-
-
-
-?>

@@ -33,29 +33,29 @@
             <td> <?php echo $booking->getState() ?></td>
             <td>
               <?php foreach ($booking->getPets() as $pet) {
-                echo $pet;
+                echo "[" . $pet . "]";
               } ?>
             </td>
             <td> <?php echo $booking->getDate() ?></td>
             <td>
-              <form action="<?php echo FRONT_ROOT . "Booking/updateState" ?>" method="POST">
+              <form style="display: none;" action="<?php echo FRONT_ROOT . "Booking/updateState" ?>" method="POST">
 
-                <input style="display: none;" type="number" name="id" id="id" value=<?php echo $booking->getId();?> >
+                <input style="display: none;" type="number" name="id" id="id" value=<?php echo $booking->getId(); ?>>
                 <input style="display: none;" type="text" name="state" id="state" value="accepted">
-                <button type="submmit" class="large-button">XX</button>
+                <button type="submmit" class="large-button"></button>
 
               </form>
-              </td>
+            </td>
             <td>
               <form action="<?php echo FRONT_ROOT . "Booking/updateState" ?>" method="post">
 
-                <input style="display: none;" type="number" name="id" id="id" value=<?php echo $booking->getId();?> >
+                <input style="display: none;" type="number" name="id" id="id" value=<?php echo $booking->getId(); ?>>
                 <input style="display: none;" type="text" name="state" id="state" value="accepted">
                 <button type="submmit" class="large-button">Accepted</button>
 
               </form>
-              </td>
-              <td>
+            </td>
+            <td>
               <form action="<?php echo FRONT_ROOT . "Booking/updateState" ?>" method="post">
 
                 <input style="display: none;" type="number" name="id" id="id" value=<?php echo $booking->getId(); ?>>
@@ -69,16 +69,12 @@
           </tr>
       <?php  }
       };  ?>
-      <tbody>
-</table>
+    <tbody>
+  </table>
 
 </form>
 
 
-<div class="container">
-  <br>
-  <a href="<?php echo FRONT_ROOT . 'Booking/lobbyKeeper' ?>"><button class="medium-button">Go Back</button></a>
-</div>
 
 
 <?php include('footer.php'); ?>
