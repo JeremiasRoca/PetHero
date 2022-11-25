@@ -8,11 +8,11 @@
     <input type="date" min="<?php getdate() ?>" id="Dates" name="dates" placeholder="Select days" multiple="true" />
 
     <br>
-    
+
     <p class="p-text">Set your compensation</p>
     <input type="number" placeholder="Set your Fee" min="1" name="compensation" id="Compensation" required>
     <br>
-    
+
     <p class="p-text">Select Type:</p>
     <br>
     <label for="Small">Small</label>

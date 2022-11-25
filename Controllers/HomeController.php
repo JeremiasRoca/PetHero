@@ -81,6 +81,13 @@ class HomeController {
         require_once(VIEWS_PATH."keeper-list.php");
     }
 
+    public function showOwnerList(){
+        $ownerList = $this->UserDao->getOwners();
+        require_once(VIEWS_PATH."validate-session.php");
+        require_once(VIEWS_PATH."owner-list.php");
+    }
+
+
     public function showTypeOfPet(){
         if(isset($_SESSION["loggedUser"])){
             require_once(VIEWS_PATH."type-pets.php");
@@ -130,6 +137,4 @@ class HomeController {
         require_once(VIEWS_PATH."register.php");
     }
 
-}   
-    
-?> 
+}

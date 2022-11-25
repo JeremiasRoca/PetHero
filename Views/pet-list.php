@@ -27,10 +27,10 @@
         if ($_SESSION["loggedUser"]->getId() === $pet->getIdOwner()) {
       ?>
           <tr>
-            <td class="first-td"> <?php echo $pet->getName()?></td>
-            <td> <?php echo $pet->getBreed()?></td>
-            <td> <?php echo $pet->getSize()?></td>
-            <td> <?php echo $pet->getObservation()?></td>
+            <td class="first-td"> <?php echo $pet->getName() ?></td>
+            <td> <?php echo $pet->getBreed() ?></td>
+            <td> <?php echo $pet->getSize() ?></td>
+            <td> <?php echo $pet->getObservation() ?></td>
             <td><img class="pet-img" src="<?php echo FRONT_ROOT . VIEWS_PATH . 'pet-images/' . $pet->getPhoto(); ?>" alt="<?php echo $pet->getPhoto()  ?>"></td>
             <td><img class="pet-img" src="<?php echo FRONT_ROOT . VIEWS_PATH . 'pet-images/' . $pet->getVaxPlanImg(); ?>" alt="<?php echo $pet->getVaxPlanImg()  ?>"></td>
             <td>

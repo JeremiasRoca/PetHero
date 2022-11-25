@@ -1,7 +1,7 @@
 <?php require 'header.php'; ?>
 
 
-<form action="<?php echo FRONT_ROOT."Home/register"?>" method="post">
+<form action="<?php echo FRONT_ROOT . "Home/register" ?>" method="post">
   <div class="container">
     <h1>Register User</h1>
 
@@ -27,18 +27,20 @@
     <br>
     <p class="p-text"> User type?</p>
     <br>
-    <input type="radio" name="userType" id="owner" value="owner" required > <p class="p-text">Owner</p>  
-    <input type="radio" name="userType" id="keeper" value="keeper" required> <p class="p-text" >Keeper</p>  
+    <input type="radio" name="userType" id="owner" value="owner" required>
+    <p class="p-text">Owner</p>
+    <input type="radio" name="userType" id="keeper" value="keeper" required>
+    <p class="p-text">Keeper</p>
     <br>
     <br>
 
- 
+
 
     <button type="submit" class="large-button">Register</button>
   </div>
-  
+
   <div class="container signin">
-    <p class="p-text"> <a href="<?php echo FRONT_ROOT.'Home/index'?>">Sign in</a>.</p>
+    <p class="p-text"> <a href="<?php echo FRONT_ROOT . 'Home/index' ?>">Sign in</a>.</p>
   </div>
 </form>
 

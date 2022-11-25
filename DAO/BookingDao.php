@@ -74,7 +74,7 @@ class BookingDao
                     $booking->setState("refused");
                 } else if ($state == "transition") {
                     $booking->setState("transition");
-                } else if ($state->setState("earring")){
+                } else if ($state->setState("earring")) {
                     $booking->setState("earring");
                 }
                 $this->retrieveData();
@@ -91,20 +91,20 @@ class BookingDao
         $this->retrieveData();
         foreach ($this->bookingList as $aux) {
 
-          
 
-               if($aux->getState()=="transition"){
+
+            if ($aux->getState() == "transition") {
                 $aux->setState("earring");
-               }
-                  
-               
-                $this->retrieveData();
-                $this->delete($aux->getId());
-                array_push($this->bookingList, $aux);
-                $this->saveData();
             }
+
+
+            $this->retrieveData();
+            $this->delete($aux->getId());
+            array_push($this->bookingList, $aux);
+            $this->saveData();
         }
-    
+    }
+
 
 
     public function modify($booking)
@@ -138,6 +138,7 @@ class BookingDao
 
         return $this->bookingListAux2;
     }
+
 
     public function getPendienteIdKeeper($idKeeper)
     {

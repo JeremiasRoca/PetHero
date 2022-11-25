@@ -18,7 +18,6 @@
         <th style="width: 30%;">Compensation</th>
         <th style="width: 15%;">Size Accepted</th>
         <th style="width: 10%;">Availability</th>
-        <th style="width: 10%;">Chat</th>
       </tr>
     </thead>
     <tbody>
@@ -37,11 +36,11 @@
                 <input style="display: none;" type="text" name="idKeeper" id="idKeeper" value=<?php echo $keeper->getId();      ?>>
                 <input style="display: none;" type="date" name="date" id="date" value=<?php echo $date;      ?>>
                 <?php echo $date . '<br>';      ?>
-                
-               
-                  <button type="submmit" class="large-button">Add Booking</button>
 
-                
+                <!-- cambiar el CONTROLLER -->
+                <button type="submmit" class="large-button">Add Booking</button>
+
+
               </form>
 
 
@@ -49,14 +48,14 @@
               } ?>
           </td>
           <td>
-          <form style="" action="<?php echo FRONT_ROOT . "Message/IndexMessage" ?>" method="post">
+            <form style="" action="<?php echo FRONT_ROOT . "Message/IndexMessage" ?>" method="post">
 
-<input style="display: none;" type="text" name="idKeeper" id="idKeeper" value=<?php echo $keeper->getId();?>>
+              <input style="display: none;" type="text" name="idKeeper" id="idKeeper" value=<?php echo $keeper->getId(); ?>>
 
-  <button type="submmit" class="large-button">Chat with <?php echo $keeper->getFirstname();      ?></button>
+              <button type="submmit" class="large-button">Chat with <?php echo $keeper->getFirstname();      ?></button>
 
 
-</form>
+            </form>
           </td>
         </tr>
       <?php }; ?>
@@ -65,10 +64,6 @@
   </table>
 </form>
 
-<div class="container">
-  <br>
-  <a href="<?php echo FRONT_ROOT . 'Home/showHomeView' ?>"><button class="medium-button">go back</button></a>
-</div>
 
 
 <?php include('footer.php'); ?>
